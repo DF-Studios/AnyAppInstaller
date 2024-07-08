@@ -1,0 +1,16 @@
+[
+    {
+        "program": "Program1",
+        "urlPath": "http://example.com/installer1.zip",
+        "nestedInstallerFolderAndFile": "setup1.exe",
+        "arguments": "/S",
+        "fileToCheck": "C:\\Program Files\\Program1\\installed.txt"
+    },
+    {
+        "program": "Program2",
+        "urlPath": "http://example.com/installer2.msi",
+        "nestedInstallerFolderAndFile": "",
+        "arguments": "",
+        "fileToCheck": "C:\\Program Files\\Program2\\installed.txt"
+    }
+]
