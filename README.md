@@ -1,4 +1,4 @@
-This PowerShell script automates the process of downloading and installing software packages from the web. It supports various installer formats including EXE, MSI, MSIX, and ZIP. The script ensures that the application is installed only if it is not already present on the system, and it performs cleanup operations after installation.
+This PowerShell script automates the process of downloading and installing software packages from the web. It supports various installer formats including EXE, MSI, MSIX, and ZIP. The script ensures that the application is installed before and after and performs cleanup operations after installation.
 
 #### Features:
 - **Dynamic URL Handling**: Automatically appends `download=1` to SharePoint URLs to facilitate direct downloads.
