@@ -1,14 +1,73 @@
-### Modify these Variables ###
-### Program Name ###
-$program = ""
-### URL to EXE, MSI, MSIX, or ZIP ###
-$urlPath = ""
-#### If ZIP, Must Specify Name of Sub-Folder\File After Extraction (Primary folder not required) ###
-$nestedInstallerFolderAndFile = ""
-#### Specify Arguments ###
-$arguments = ""
-#### Specify File to Check if Installed ###
-$fileToCheck = ""
+<#
+.SYNOPSIS
+    This script installs an application from a specified URL, with support for different installer types (EXE, MSI, MSIX, ZIP).
+
+.PARAMETER program
+    The name of the program to be installed.
+
+.PARAMETER urlPath
+    The URL to the installer (EXE, MSI, MSIX, or ZIP).
+
+.PARAMETER nestedInstallerFolderAndFile
+    If the installer is a ZIP file, the name of the sub-folder/file after extraction.
+
+.PARAMETER arguments
+    The arguments to be passed to the installer.
+
+.PARAMETER fileToCheck
+    The file path to check if the application is already installed.
+
+.DESCRIPTION
+    This script downloads an installer from a specified URL and installs the application. It supports different installer types
+    (EXE, MSI, MSIX, ZIP) and handles nested installers within ZIP files. The script also includes a cleanup function to remove
+    temporary files after installation.
+
+.EXAMPLE
+    .\installerScript.ps1 -program "MyApp" -urlPath "http://example.com/installer.zip" -nestedInstallerFolderAndFile "setup.exe" -arguments "/S" -fileToCheck "C:\Program Files\MyApp\installed.txt"
+
+.NOTES
+    Ensure that the necessary permissions are granted to run installers and manage files in the specified locations.
+
+.AUTHOR
+    Paul Clemons
+
+.REVISION
+    v1.0 - Initial version. PC - 2024/07/07
+    v1.1 - Added parameters and conditional base variable assignment. DF - 2024/07/07
+#>
+
+### Input Parameters ###
+param (
+    [string]$program = "",
+    [string]$urlPath = "",
+    [string]$nestedInstallerFolderAndFile = "",
+    [string]$arguments = "",
+    [string]$fileToCheck = ""
+)
+
+### Base Variables ###
+$baseProgram = "Default Program"
+$baseUrlPath = "http://example.com/installer.zip"
+$baseNestedInstallerFolderAndFile = "setup.exe"
+$baseArguments = "/S"
+$baseFileToCheck = "C:\Program Files\Default Program\installed.txt"
+
+### Assign Parameters or Base Variables ###
+if ($program -eq "") {
+    $program = $baseProgram
+}
+if ($urlPath -eq "") {
+    $urlPath = $baseUrlPath
+}
+if ($nestedInstallerFolderAndFile -eq "") {
+    $nestedInstallerFolderAndFile = $baseNestedInstallerFolderAndFile
+}
+if ($arguments -eq "") {
+    $arguments = $baseArguments
+}
+if ($fileToCheck -eq "") {
+    $fileToCheck = $baseFileToCheck
+}
 
 ### Static Variables ###
 if ($urlPath -match "sharepoint") { # Check if URL contains "sharepoint" and append "download=1" if true
